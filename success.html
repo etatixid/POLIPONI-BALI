@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="id">
 <head>
 
@@ -15,28 +15,89 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <style>
+  /*======================================================
+POLIPONI FESTIVAL 2026
+SUCCESS PAGE
+VERSION : DEWA PROMAX
+PART 1A CSS
+======================================================*/
+
+/*==============================
+RESET
+==============================*/
 
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Poppins',sans-serif;
+}
+
+html{
+scroll-behavior:smooth;
 }
 
 body{
 
-background:
-linear-gradient(180deg,#eef9ff,#ffffff);
+font-family:'Poppins',sans-serif;
+
+background:#020617;
+
+color:#fff;
 
 overflow-x:hidden;
 
-color:#111;
+min-height:100vh;
 
-padding-bottom:140px;
+position:relative;
 
 }
 
-/* Background */
+/*==============================
+ROOT COLOR
+==============================*/
+
+:root{
+
+--gold:#FFD54A;
+--gold2:#FACC15;
+--gold3:#F59E0B;
+
+--green:#22C55E;
+--green2:#16A34A;
+
+--red:#EF4444;
+
+--blue:#2563EB;
+
+--white:#ffffff;
+
+--dark:#020617;
+--dark2:#0F172A;
+--dark3:#111827;
+
+}
+
+/*==============================
+BODY BACKGROUND
+==============================*/
+
+body{
+
+background:
+
+radial-gradient(circle at top,
+
+#172554 0%,
+
+#0F172A 35%,
+
+#020617 100%);
+
+}
+
+/*==============================
+ANIMATED BACKGROUND
+==============================*/
 
 body::before{
 
@@ -44,65 +105,405 @@ content:"";
 
 position:fixed;
 
-inset:0;
+left:0;
+top:0;
+
+width:100%;
+height:100%;
 
 background:
 
-radial-gradient(circle at top,#00d4ff22,transparent 40%),
+linear-gradient(
 
-radial-gradient(circle at bottom,#00ff9920,transparent 35%),
+120deg,
 
-url("poster.png") center/cover;
+rgba(255,213,74,.08),
 
-filter:blur(35px);
+transparent,
 
-transform:scale(1.2);
+rgba(34,197,94,.05),
 
-z-index:-2;
+transparent,
 
-opacity:.35;
+rgba(37,99,235,.05)
+
+);
+
+background-size:600% 600%;
+
+animation:bgMove 16s linear infinite;
+
+z-index:-5;
 
 }
+
+@keyframes bgMove{
+
+0%{
+
+background-position:0% 50%;
+
+}
+
+50%{
+
+background-position:100% 50%;
+
+}
+
+100%{
+
+background-position:0% 50%;
+
+}
+
+}
+
+/*==============================
+GRID
+==============================*/
+
+body::after{
+
+content:"";
+
+position:fixed;
+
+inset:0;
+
+background-image:
+
+linear-gradient(
+
+rgba(255,213,74,.05) 1px,
+
+transparent 1px),
+
+linear-gradient(
+
+90deg,
+
+rgba(255,213,74,.05) 1px,
+
+transparent 1px);
+
+background-size:45px 45px;
+
+pointer-events:none;
+
+z-index:-4;
+
+}
+
+/*==============================
+FLOATING GLOW
+==============================*/
+
+.glow{
+
+position:fixed;
+
+border-radius:999px;
+
+filter:blur(90px);
+
+opacity:.5;
+
+pointer-events:none;
+
+animation:floatGlow 14s ease-in-out infinite;
+
+}
+
+.glow1{
+
+width:280px;
+
+height:280px;
+
+background:#FFD54A;
+
+top:-80px;
+
+left:-80px;
+
+}
+
+.glow2{
+
+width:340px;
+
+height:340px;
+
+background:#16A34A;
+
+right:-100px;
+
+bottom:-80px;
+
+animation-delay:3s;
+
+}
+
+.glow3{
+
+width:250px;
+
+height:250px;
+
+background:#2563EB;
+
+top:30%;
+
+left:40%;
+
+animation-delay:6s;
+
+}
+
+@keyframes floatGlow{
+
+0%{
+
+transform:translate(0,0) scale(1);
+
+}
+
+50%{
+
+transform:
+
+translate(30px,-40px)
+
+scale(1.15);
+
+}
+
+100%{
+
+transform:translate(0,0) scale(1);
+
+}
+
+}
+
+/*==============================
+CONTAINER
+==============================*/
 
 .container{
 
-max-width:480px;
+width:100%;
+
+max-width:1280px;
 
 margin:auto;
 
-padding:20px;
+padding:40px 20px;
 
 }
 
-/* SUCCESS */
+/*==============================
+GLASS
+==============================*/
 
-.success{
+.glass{
 
-background:#fff;
+background:
 
-border-radius:30px;
+rgba(255,255,255,.06);
 
-padding:28px;
+backdrop-filter:blur(22px);
 
-text-align:center;
+border:1px solid rgba(255,255,255,.08);
+
+}
+
+/*==============================
+GOLD FRAME
+==============================*/
+
+.gold-frame{
+
+position:relative;
+
+padding:3px;
+
+border-radius:34px;
+
+background:
+
+linear-gradient(
+
+145deg,
+
+#FFF8DC,
+
+#FFD54A,
+
+#FACC15,
+
+#B45309,
+
+#FFF8DC
+
+);
 
 box-shadow:
 
-0 15px 40px rgba(0,0,0,.10);
+0 0 30px rgba(255,213,74,.35),
 
-animation:fadeUp .8s ease;
+0 0 80px rgba(255,213,74,.15);
+
+overflow:hidden;
 
 }
 
+/*==============================
+SHINE EFFECT
+==============================*/
+
+.gold-frame::before{
+
+content:"";
+
+position:absolute;
+
+top:-150%;
+
+left:-40%;
+
+width:40%;
+
+height:400%;
+
+background:
+
+linear-gradient(
+
+90deg,
+
+transparent,
+
+rgba(255,255,255,.55),
+
+transparent
+
+);
+
+transform:rotate(25deg);
+
+animation:frameShine 6s linear infinite;
+
+}
+
+@keyframes frameShine{
+
+100%{
+
+left:160%;
+
+}
+
+}
+
+/*==============================
+CARD
+==============================*/
+
+.card{
+
+background:
+
+rgba(2,6,23,.75);
+
+backdrop-filter:blur(25px);
+
+border-radius:30px;
+
+overflow:hidden;
+
+padding:35px;
+
+}
+
+/*==============================
+TITLE
+==============================*/
+
+.title{
+
+font-size:58px;
+
+font-weight:900;
+
+text-align:center;
+
+letter-spacing:3px;
+
+background:
+
+linear-gradient(
+
+90deg,
+
+#ffffff,
+
+#FFD54A,
+
+#FACC15,
+
+#ffffff
+
+);
+
+-webkit-background-clip:text;
+
+-webkit-text-fill-color:transparent;
+
+text-shadow:
+
+0 0 25px rgba(255,213,74,.5);
+
+}
+
+.subtitle{
+
+margin-top:10px;
+
+text-align:center;
+
+font-size:18px;
+
+color:#FFE082;
+
+font-weight:600;
+
+}
+
+/*==============================
+CHECK ICON
+==============================*/
+
 .success-icon{
 
-width:95px;
+width:140px;
 
-height:95px;
+height:140px;
+
+margin:auto;
 
 border-radius:50%;
 
-margin:auto;
+background:
+
+linear-gradient(
+
+145deg,
+
+#22C55E,
+
+#16A34A);
 
 display:flex;
 
@@ -110,255 +511,721 @@ justify-content:center;
 
 align-items:center;
 
-font-size:50px;
+font-size:70px;
 
-background:
-
-linear-gradient(135deg,#00ff88,#00d46a);
-
-color:#fff;
+font-weight:900;
 
 box-shadow:
 
-0 0 30px rgba(0,255,136,.45);
+0 0 30px rgba(34,197,94,.5),
 
-animation:pulse 2s infinite;
+0 0 80px rgba(34,197,94,.2);
 
-}
-
-.success h2{
-
-margin-top:20px;
-
-font-size:30px;
-
-font-weight:800;
+animation:successPulse 2.2s infinite;
 
 }
 
-.success p{
+@keyframes successPulse{
 
-margin-top:10px;
+50%{
 
-font-size:15px;
-
-color:#666;
-
-line-height:1.6;
+transform:scale(1.08);
 
 }
 
-/* Ticket */
+}
 
-.ticket{
+/*==============================
+RESPONSIVE
+==============================*/
 
-margin-top:25px;
+@media(max-width:768px){
 
-background:#fff;
+.title{
 
-border-radius:30px;
+font-size:38px;
+
+}
+
+.card{
+
+padding:22px;
+
+}
+
+.success-icon{
+
+width:110px;
+
+height:110px;
+
+font-size:56px;
+
+}
+
+}
+
+/*======================================================
+PART 1B
+DETAIL CARD • PREMIUM TICKET • QR • BARCODE
+======================================================*/
+
+/*==============================
+SECTION
+==============================*/
+
+.section{
+
+margin-top:45px;
+
+}
+
+.grid2{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:28px;
+
+}
+
+@media(max-width:900px){
+
+.grid2{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+/*==============================
+DETAIL CARD
+==============================*/
+
+.detail-card{
+
+position:relative;
+
+background:
+
+linear-gradient(
+
+145deg,
+
+rgba(255,255,255,.05),
+
+rgba(255,255,255,.02)
+
+);
+
+border:1px solid rgba(255,213,74,.18);
+
+border-radius:26px;
+
+padding:26px;
 
 overflow:hidden;
 
-box-shadow:
-
-0 18px 45px rgba(0,0,0,.10);
+transition:.35s;
 
 }
 
-.ticket-header{
+.detail-card:hover{
+
+transform:translateY(-6px);
+
+box-shadow:
+
+0 20px 45px rgba(255,213,74,.18);
+
+}
+
+.detail-card::before{
+
+content:"";
+
+position:absolute;
+
+top:0;
+
+left:0;
+
+width:6px;
+
+height:100%;
 
 background:
 
-linear-gradient(135deg,#00d4ff,#00a2ff);
+linear-gradient(
 
-padding:28px;
+180deg,
 
-color:#fff;
+#FFD54A,
 
-text-align:center;
+#F59E0B,
+
+#22C55E
+
+);
 
 }
 
-.ticket-header h1{
+.detail-title{
 
-font-size:26px;
+font-size:24px;
 
 font-weight:800;
 
-}
+color:#FFD54A;
 
-.ticket-header span{
+margin-bottom:20px;
 
-display:block;
-
-margin-top:6px;
-
-font-size:14px;
-
-opacity:.95;
+letter-spacing:1px;
 
 }
 
-.ticket-body{
-
-padding:28px;
-
-}
-
-.row{
+.info-row{
 
 display:flex;
 
 justify-content:space-between;
 
+align-items:center;
+
 padding:14px 0;
 
-border-bottom:1px dashed #ddd;
-
-gap:10px;
+border-bottom:1px solid rgba(255,255,255,.06);
 
 }
 
-.label{
-
-font-weight:600;
-
-color:#666;
-
-}
-
-.value{
-
-font-weight:700;
-
-text-align:right;
-
-word-break:break-word;
-
-}
-
-.total{
-
-font-size:22px;
-
-font-weight:800;
-
-color:#00aaff;
-
-}
-
-/* QR */
-
-.qr-area{
-
-margin-top:30px;
-
-display:flex;
-
-justify-content:center;
-
-}
-
-#qrcode{
-
-padding:16px;
-
-background:#fff;
-
-border-radius:18px;
-
-box-shadow:
-
-0 8px 20px rgba(0,0,0,.08);
-
-}
-
-/* Barcode */
-
-.barcode-area{
-
-margin-top:25px;
-
-text-align:center;
-
-}
-
-#barcode{
-
-width:100%;
-
-height:80px;
-
-}
-
-/* Ticket ID */
-
-.ticket-id{
-
-margin-top:15px;
-
-text-align:center;
-
-font-size:13px;
-
-letter-spacing:2px;
-
-font-weight:700;
-
-color:#777;
-
-}
-
-/* Notice */
-
-.notice{
-
-margin-top:22px;
-
-padding:18px;
-
-background:#f5fbff;
-
-border-left:5px solid #00aaff;
-
-border-radius:15px;
-
-font-size:13px;
-
-line-height:1.8;
-
-color:#444;
-
-}
-
-/* Buttons */
-
-.buttons{
-
-margin-top:28px;
-
-display:grid;
-
-gap:15px;
-
-}
-
-.btn{
+.info-row:last-child{
 
 border:none;
 
-padding:18px;
+}
 
-border-radius:18px;
+.info-label{
+
+color:#9CA3AF;
+
+font-size:14px;
+
+font-weight:600;
+
+}
+
+.info-value{
 
 font-size:16px;
 
 font-weight:700;
 
+color:white;
+
+text-align:right;
+
+}
+
+/*==============================
+STATUS
+==============================*/
+
+.badge-paid{
+
+display:inline-flex;
+
+align-items:center;
+
+gap:8px;
+
+padding:10px 18px;
+
+border-radius:999px;
+
+background:
+
+linear-gradient(
+
+145deg,
+
+#22C55E,
+
+#16A34A
+
+);
+
+font-weight:800;
+
+color:white;
+
+box-shadow:
+
+0 0 20px rgba(34,197,94,.45);
+
+animation:badgePulse 2s infinite;
+
+}
+
+@keyframes badgePulse{
+
+50%{
+
+transform:scale(1.05);
+
+}
+
+}
+
+/*==============================
+PREMIUM TICKET
+==============================*/
+
+.ticket{
+
+position:relative;
+
+margin-top:55px;
+
+border-radius:34px;
+
+overflow:hidden;
+
+background:
+
+linear-gradient(
+
+145deg,
+
+#111827,
+
+#030712,
+
+#111827
+
+);
+
+border:2px solid rgba(255,213,74,.22);
+
+box-shadow:
+
+0 25px 55px rgba(0,0,0,.45);
+
+}
+
+.ticket::before{
+
+content:"";
+
+position:absolute;
+
+top:-200%;
+
+left:-40%;
+
+width:40%;
+
+height:500%;
+
+background:
+
+linear-gradient(
+
+90deg,
+
+transparent,
+
+rgba(255,255,255,.22),
+
+transparent
+
+);
+
+transform:rotate(25deg);
+
+animation:ticketShine 6s infinite;
+
+}
+
+@keyframes ticketShine{
+
+100%{
+
+left:170%;
+
+}
+
+}
+
+.ticket-header{
+
+padding:30px;
+
+background:
+
+linear-gradient(
+
+90deg,
+
+rgba(255,213,74,.08),
+
+transparent
+
+);
+
+border-bottom:1px solid rgba(255,213,74,.15);
+
+}
+
+.ticket-title{
+
+font-size:34px;
+
+font-weight:900;
+
+color:#FFD54A;
+
+letter-spacing:2px;
+
+}
+
+.ticket-sub{
+
+margin-top:6px;
+
+color:#d1d5db;
+
+font-size:15px;
+
+}
+
+.ticket-body{
+
+display:grid;
+
+grid-template-columns:1fr 320px;
+
+gap:35px;
+
+padding:35px;
+
+}
+
+@media(max-width:950px){
+
+.ticket-body{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+/*==============================
+QR CARD
+==============================*/
+
+.qr-card{
+
+background:white;
+
+padding:18px;
+
+border-radius:26px;
+
+box-shadow:
+
+0 20px 45px rgba(255,255,255,.18);
+
+animation:qrFloat 4s ease-in-out infinite;
+
+}
+
+@keyframes qrFloat{
+
+50%{
+
+transform:
+
+translateY(-8px);
+
+}
+
+}
+
+.qr-card img{
+
+width:100%;
+
+display:block;
+
+border-radius:14px;
+
+}
+
+/*==============================
+BARCODE
+==============================*/
+
+.barcode{
+
+margin-top:20px;
+
+height:82px;
+
+border-radius:14px;
+
+background:
+
+repeating-linear-gradient(
+
+90deg,
+
+#000 0,
+
+#000 2px,
+
+#fff 2px,
+
+#fff 4px,
+
+#000 4px,
+
+#000 5px,
+
+#fff 5px,
+
+#fff 8px,
+
+#000 8px,
+
+#000 10px
+
+);
+
+}
+
+.barcode-text{
+
+margin-top:14px;
+
+text-align:center;
+
+letter-spacing:8px;
+
+font-size:13px;
+
+font-weight:700;
+
+color:#cbd5e1;
+
+word-break:break-all;
+
+}
+
+/*==============================
+RIBBON
+==============================*/
+
+.ribbon{
+
+position:absolute;
+
+top:28px;
+
+right:-58px;
+
+padding:12px 70px;
+
+background:
+
+linear-gradient(
+
+145deg,
+
+#22C55E,
+
+#16A34A
+
+);
+
+color:white;
+
+font-size:14px;
+
+font-weight:900;
+
+transform:rotate(45deg);
+
+letter-spacing:2px;
+
+box-shadow:
+
+0 0 20px rgba(34,197,94,.5);
+
+}
+
+/*==============================
+HOLOGRAM
+==============================*/
+
+.hologram{
+
+position:absolute;
+
+right:25px;
+
+bottom:25px;
+
+width:90px;
+
+height:90px;
+
+border-radius:50%;
+
+background:
+
+conic-gradient(
+
+#FFD54A,
+
+#22C55E,
+
+#2563EB,
+
+#EF4444,
+
+#FFD54A
+
+);
+
+filter:blur(1px);
+
+opacity:.8;
+
+animation:holoRotate 6s linear infinite;
+
+}
+
+@keyframes holoRotate{
+
+100%{
+
+transform:rotate(360deg);
+
+}
+
+}
+
+/*======================================================
+PART 1C
+BUTTON • PARTICLE • CONFETTI • FIREWORK • FOOTER
+======================================================*/
+
+/*==============================
+BUTTON GROUP
+==============================*/
+
+.button-group{
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:18px;
+
+margin-top:40px;
+
+}
+
+@media(max-width:850px){
+
+.button-group{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+/*==============================
+PREMIUM BUTTON
+==============================*/
+
+.btn{
+
+position:relative;
+
+overflow:hidden;
+
+border:none;
+
+outline:none;
+
 cursor:pointer;
 
-transition:.25s;
+padding:18px 22px;
+
+border-radius:18px;
+
+font-size:16px;
+
+font-weight:800;
+
+letter-spacing:1px;
+
+transition:.35s;
+
+color:#fff;
+
+}
+
+.btn::before{
+
+content:"";
+
+position:absolute;
+
+top:0;
+
+left:-120%;
+
+width:60%;
+
+height:100%;
+
+background:
+
+linear-gradient(
+
+90deg,
+
+transparent,
+
+rgba(255,255,255,.45),
+
+transparent);
+
+transform:skewX(-30deg);
+
+transition:.8s;
+
+}
+
+.btn:hover::before{
+
+left:180%;
+
+}
+
+.btn:hover{
+
+transform:
+
+translateY(-4px)
+
+scale(1.02);
 
 }
 
@@ -366,103 +1233,333 @@ transition:.25s;
 
 background:
 
-linear-gradient(135deg,#00d4ff,#00a2ff);
+linear-gradient(
 
-color:#fff;
+145deg,
+
+#FFD54A,
+
+#F59E0B);
+
+color:#111827;
+
+box-shadow:
+
+0 15px 35px rgba(245,158,11,.35);
 
 }
 
-.btn-pdf{
+.btn-share{
 
 background:
 
-linear-gradient(135deg,#00d27a,#00b862);
+linear-gradient(
 
-color:#fff;
+145deg,
+
+#22C55E,
+
+#16A34A);
+
+box-shadow:
+
+0 15px 35px rgba(34,197,94,.35);
 
 }
 
 .btn-home{
 
-background:#111;
+background:
 
-color:#fff;
+linear-gradient(
+
+145deg,
+
+#2563EB,
+
+#1D4ED8);
+
+box-shadow:
+
+0 15px 35px rgba(37,99,235,.35);
 
 }
 
-.btn:hover{
+/*==============================
+PARTICLE
+==============================*/
 
-transform:translateY(-3px);
+.particle{
+
+position:fixed;
+
+width:6px;
+
+height:6px;
+
+border-radius:50%;
+
+background:#FFD54A;
+
+pointer-events:none;
+
+animation:particleFloat linear infinite;
+
+opacity:.5;
 
 }
 
-/* Footer */
+@keyframes particleFloat{
+
+0%{
+
+transform:
+
+translateY(100vh)
+
+scale(.3);
+
+opacity:0;
+
+}
+
+20%{
+
+opacity:1;
+
+}
+
+100%{
+
+transform:
+
+translateY(-120px)
+
+scale(1);
+
+opacity:0;
+
+}
+
+}
+
+/*==============================
+CONFETTI
+==============================*/
+
+.confetti{
+
+position:fixed;
+
+width:12px;
+
+height:18px;
+
+pointer-events:none;
+
+z-index:9999;
+
+animation:confettiFall linear forwards;
+
+}
+
+@keyframes confettiFall{
+
+0%{
+
+transform:
+
+translateY(-40px)
+
+rotate(0deg);
+
+opacity:1;
+
+}
+
+100%{
+
+transform:
+
+translateY(110vh)
+
+rotate(720deg);
+
+opacity:0;
+
+}
+
+}
+
+/*==============================
+FIREWORK
+==============================*/
+
+.firework{
+
+position:fixed;
+
+width:8px;
+
+height:8px;
+
+border-radius:50%;
+
+pointer-events:none;
+
+z-index:9999;
+
+animation:explode .9s ease-out forwards;
+
+}
+
+@keyframes explode{
+
+0%{
+
+transform:scale(1);
+
+opacity:1;
+
+}
+
+100%{
+
+transform:
+
+translate(
+
+var(--x),
+
+var(--y))
+
+scale(0);
+
+opacity:0;
+
+}
+
+}
+
+/*==============================
+GLOW BORDER
+==============================*/
+
+.glow-border{
+
+position:absolute;
+
+inset:0;
+
+border-radius:34px;
+
+border:2px solid rgba(255,213,74,.15);
+
+animation:borderGlow 4s linear infinite;
+
+pointer-events:none;
+
+}
+
+@keyframes borderGlow{
+
+0%{
+
+box-shadow:
+
+0 0 10px rgba(255,213,74,.15);
+
+}
+
+50%{
+
+box-shadow:
+
+0 0 40px rgba(255,213,74,.45);
+
+}
+
+100%{
+
+box-shadow:
+
+0 0 10px rgba(255,213,74,.15);
+
+}
+
+}
+
+/*==============================
+FOOTER
+==============================*/
 
 .footer{
 
-margin-top:30px;
+margin-top:60px;
 
 text-align:center;
 
-font-size:12px;
+color:#94A3B8;
 
-color:#888;
+font-size:14px;
 
-}
-
-/* Floating Glow */
-
-.glow{
-
-position:fixed;
-
-width:250px;
-
-height:250px;
-
-border-radius:50%;
-
-background:#00d4ff33;
-
-filter:blur(90px);
-
-top:-70px;
-
-right:-70px;
-
-z-index:-1;
+line-height:1.9;
 
 }
 
-.glow2{
+.footer b{
 
-position:fixed;
-
-width:230px;
-
-height:230px;
-
-border-radius:50%;
-
-background:#00ff8833;
-
-filter:blur(90px);
-
-bottom:-60px;
-
-left:-60px;
-
-z-index:-1;
+color:#FFD54A;
 
 }
 
-@keyframes pulse{
+.footer .copyright{
 
-0%{transform:scale(1)}
+margin-top:10px;
 
-50%{transform:scale(1.08)}
+font-size:13px;
 
-100%{transform:scale(1)}
+opacity:.7;
+
+}
+
+/*==============================
+SCROLLBAR
+==============================*/
+
+::-webkit-scrollbar{
+
+width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+background:#020617;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:#FFD54A;
+
+border-radius:50px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+background:#F59E0B;
+
+}
+
+/*==============================
+ANIMATION CLASS
+==============================*/
+
+.fade-up{
+
+animation:fadeUp .8s ease both;
 
 }
 
@@ -472,7 +1569,9 @@ from{
 
 opacity:0;
 
-transform:translateY(40px);
+transform:
+
+translateY(40px);
 
 }
 
@@ -486,660 +1585,1570 @@ transform:none;
 
 }
 
-</style>
+.zoom{
 
-</head>
+animation:zoom .8s ease both;
 
-<body>
+}
 
-<div class="glow"></div>
-<div class="glow2"></div>
+@keyframes zoom{
+
+from{
+
+opacity:0;
+
+transform:scale(.8);
+
+}
+
+to{
+
+opacity:1;
+
+transform:scale(1);
+
+}
+
+}
+
+.rotate{
+
+animation:rotateIn 1s ease both;
+
+}
+
+@keyframes rotateIn{
+
+from{
+
+opacity:0;
+
+transform:
+
+rotate(-25deg)
+
+scale(.7);
+
+}
+
+to{
+
+opacity:1;
+
+transform:
+
+rotate(0)
+
+scale(1);
+
+}
+
+}
+
+/*==============================
+RESPONSIVE
+==============================*/
+
+@media(max-width:768px){
+
+.ticket-header{
+
+padding:22px;
+
+}
+
+.ticket-title{
+
+font-size:26px;
+
+}
+
+.ticket-body{
+
+padding:22px;
+
+gap:24px;
+
+}
+
+.detail-card{
+
+padding:20px;
+
+}
+
+.info-row{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:6px;
+
+}
+
+.barcode{
+
+height:65px;
+
+}
+
+.button-group{
+
+gap:14px;
+
+}
+
+.btn{
+
+padding:16px;
+
+font-size:15px;
+
+}
+
+}
+
+/*==============================
+END CSS
+==============================*/  
+ <body>
+
+<!--==================================
+BACKGROUND
+===================================-->
+
+<div class="glow glow1"></div>
+<div class="glow glow2"></div>
+<div class="glow glow3"></div>
 
 <div class="container">
 
-<div class="success">
+<!--==================================
+SUCCESS CARD
+===================================-->
 
-<div class="success-icon">
-✔
+<div class="gold-frame fade-up">
+
+<div class="card">
+
+<div class="glow-border"></div>
+
+<!--==================================
+HEADER
+===================================-->
+
+<div class="rotate">
+
+<img
+src="logo-event.png"
+class="logo"
+style="
+width:280px;
+max-width:100%;
+display:block;
+margin:auto;
+margin-bottom:35px;
+">
+
 </div>
 
-<h2>Pembayaran Berhasil</h2>
+<div class="success-icon zoom">
 
-<p>
+✓
 
-Terima kasih.
+</div>
 
-E-Ticket Anda berhasil dibuat.
+<h1 class="title">
 
-Silakan simpan tiket ini dan tunjukkan QR Code saat memasuki venue.
+PAYMENT SUCCESS
+
+</h1>
+
+<p class="subtitle">
+
+Pembayaran berhasil diverifikasi oleh sistem POLIPONI Festival
 
 </p>
 
+<!--==================================
+DETAIL
+===================================-->
+
+<div class="section">
+
+<div class="grid2">
+
+<!--========================
+PEMESAN
+=========================-->
+
+<div class="detail-card">
+
+<div class="detail-title">
+
+👤 DATA PEMESAN
+
 </div>
 
-<!-- PART 2 AKAN DIMULAI DARI SINI -->
-  <!-- ===========================
-E-TICKET PREMIUM
-=========================== -->
+<div class="info-row">
 
-<div class="ticket" id="ticket">
+<span class="info-label">
+
+Nama Lengkap
+
+</span>
+
+<span
+id="nama"
+class="info-value">
+
+-
+
+</span>
+
+</div>
+
+<div class="info-row">
+
+<span class="info-label">
+
+WhatsApp
+
+</span>
+
+<span
+id="wa"
+class="info-value">
+
+-
+
+</span>
+
+</div>
+
+<div class="info-row">
+
+<span class="info-label">
+
+Order ID
+
+</span>
+
+<span
+id="order"
+class="info-value">
+
+-
+
+</span>
+
+</div>
+
+<div class="info-row">
+
+<span class="info-label">
+
+Tanggal
+
+</span>
+
+<span
+id="tanggal"
+class="info-value">
+
+-
+
+</span>
+
+</div>
+
+</div>
+
+<!--========================
+TIKET
+=========================-->
+
+<div class="detail-card">
+
+<div class="detail-title">
+
+🎫 DETAIL TIKET
+
+</div>
+
+<div class="info-row">
+
+<span class="info-label">
+
+Jenis Tiket
+
+</span>
+
+<span
+id="jenis"
+class="info-value">
+
+-
+
+</span>
+
+</div>
+
+<div class="info-row">
+
+<span class="info-label">
+
+Jumlah
+
+</span>
+
+<span
+id="jumlah"
+class="info-value">
+
+-
+
+</span>
+
+</div>
+
+<div class="info-row">
+
+<span class="info-label">
+
+Total
+
+</span>
+
+<span
+id="total"
+class="info-value"
+style="color:#FFD54A">
+
+Rp 0
+
+</span>
+
+</div>
+
+<div class="info-row">
+
+<span class="info-label">
+
+Status
+
+</span>
+
+<span
+class="badge-paid">
+
+✔ PAID
+
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+</div> 
+  <!--==================================
+PREMIUM E-TICKET
+===================================-->
+
+<div class="ticket fade-up">
+
+<div class="ribbon">
+
+PAID
+
+</div>
 
 <div class="ticket-header">
 
-<h1>POLIPONI 2026</h1>
+<div class="ticket-title">
 
-<span>Official Electronic Ticket</span>
+🎫 OFFICIAL E-TICKET
+
+</div>
+
+<div class="ticket-sub">
+
+POLIPONI FESTIVAL BALI 2026
+
+</div>
 
 </div>
 
 <div class="ticket-body">
 
-<div class="row">
-<div class="label">Nama Pemesan</div>
-<div class="value" id="nama">-</div>
+<!--==========================
+LEFT
+===========================-->
+
+<div>
+
+<div class="info-row">
+
+<span class="info-label">
+
+Nama Peserta
+
+</span>
+
+<span
+id="ticketNama"
+class="info-value">
+
+-
+
+</span>
+
 </div>
 
-<div class="row">
-<div class="label">Jenis Tiket</div>
-<div class="value" id="jenisTiket">-</div>
+<div class="info-row">
+
+<span class="info-label">
+
+Jenis Tiket
+
+</span>
+
+<span
+id="ticketJenis"
+class="info-value">
+
+-
+
+</span>
+
 </div>
 
-<div class="row">
-<div class="label">Jumlah Tiket</div>
-<div class="value" id="jumlahTiket">0</div>
+<div class="info-row">
+
+<span class="info-label">
+
+Jumlah Tiket
+
+</span>
+
+<span
+id="ticketJumlah"
+class="info-value">
+
+-
+
+</span>
+
 </div>
 
-<div class="row">
-<div class="label">E-Mail</div>
-<div class="value" id="email">-</div>
+<div class="info-row">
+
+<span class="info-label">
+
+Order ID
+
+</span>
+
+<span
+id="ticketOrder"
+class="info-value">
+
+-
+
+</span>
+
 </div>
 
-<div class="row">
-<div class="label">WhatsApp</div>
-<div class="value" id="wa">-</div>
-</div>
+<div class="info-row">
 
-<div class="row">
-<div class="label">Nomor Identitas</div>
-<div class="value" id="nomorId">-</div>
-</div>
+<span class="info-label">
 
-<div class="row">
-<div class="label">Tanggal Event</div>
-<div class="value">
-04 Juli 2026
-</div>
-</div>
-
-<div class="row">
-<div class="label">Venue</div>
-<div class="value">
-Bali United Training Center
-</div>
-</div>
-
-<div class="row">
-<div class="label">Gate</div>
-<div class="value" id="gate">
-GATE A
-</div>
-</div>
-
-<div class="row">
-<div class="label">Seat</div>
-<div class="value" id="seat">
-FREE STANDING
-</div>
-</div>
-
-<div class="row">
-
-<div class="label">
 Status
-</div>
 
-<div class="value"
-style="
-color:#00b15d;
-font-weight:800;
-">
-PAID
-</div>
+</span>
 
-</div>
+<span class="badge-paid">
 
-<div class="row total">
+✔ VERIFIED
 
-<div>Total Pembayaran</div>
-
-<div id="totalBayar">
-
-Rp 0
+</span>
 
 </div>
 
-</div>
+<div class="info-row">
 
-<div class="ticket-id">
+<span class="info-label">
 
-Ticket ID
+Gate
 
-<br>
+</span>
 
-<strong id="ticketId">
+<span class="info-value">
 
-POLI-0000000000
+MAIN ENTRANCE
 
-</strong>
-
-</div>
-
-<div class="qr-area">
-
-<div id="qrcode"></div>
+</span>
 
 </div>
 
-<div class="barcode-area">
+<div class="info-row">
 
-<svg id="barcode"></svg>
+<span class="info-label">
 
-</div>
+Festival Date
 
-<div class="notice">
+</span>
 
-<b>INFORMASI</b>
+<span class="info-value">
 
-<br><br>
+2026
 
-• Tiket hanya berlaku untuk 1 orang.
-
-<br>
-
-• QR Code akan dipindai saat check-in.
-
-<br>
-
-• Dilarang memperjualbelikan tiket.
-
-<br>
-
-• Simpan tiket hingga acara selesai.
+</span>
 
 </div>
 
 </div>
 
+<!--==========================
+RIGHT
+===========================-->
+
+<div>
+
+<div class="qr-card">
+
+<img
+src="qris.png"
+alt="QR Ticket">
+
 </div>
 
-<!-- BUTTON -->
+<div class="barcode">
 
-<div class="buttons">
+</div>
+
+<div
+id="barcodeText"
+class="barcode-text">
+
+POLIPONI
+
+</div>
+
+</div>
+
+</div>
+
+<div class="hologram">
+
+</div>
+
+</div>
+
+<!--==================================
+STATUS TIMELINE
+===================================-->
+
+<div class="section">
+
+<div class="detail-card">
+
+<div class="detail-title">
+
+📋 STATUS TRANSAKSI
+
+</div>
+
+<div class="info-row">
+
+<span class="info-label">
+
+Order Dibuat
+
+</span>
+
+<span class="badge-paid">
+
+✔ SUCCESS
+
+</span>
+
+</div>
+
+<div class="info-row">
+
+<span class="info-label">
+
+Pembayaran QRIS
+
+</span>
+
+<span class="badge-paid">
+
+✔ SUCCESS
+
+</span>
+
+</div>
+
+<div class="info-row">
+
+<span class="info-label">
+
+Validasi Sistem
+
+</span>
+
+<span class="badge-paid">
+
+✔ VERIFIED
+
+</span>
+
+</div>
+
+<div class="info-row">
+
+<span class="info-label">
+
+E-Ticket
+
+</span>
+
+<span class="badge-paid">
+
+✔ READY
+
+</span>
+
+</div>
+
+</div>
+<!--==================================
+ACTION BUTTON
+===================================-->
+
+<div class="button-group">
 
 <button
-class="btn btn-download"
-id="downloadPNG">
+id="downloadBtn"
+class="btn btn-download">
 
-📥 Download PNG
+⬇ DOWNLOAD E-TICKET
 
 </button>
 
 <button
-class="btn btn-pdf"
-id="downloadPDF">
+id="shareBtn"
+class="btn btn-share">
 
-📄 Download PDF
+📤 BAGIKAN TIKET
 
 </button>
 
 <button
-class="btn btn-home"
-onclick="location.href='index.html'">
+id="homeBtn"
+class="btn btn-home">
 
-🏠 Kembali ke Beranda
+🏠 KEMBALI KE HOME
 
 </button>
 
 </div>
+
+<!--==================================
+IMPORTANT INFORMATION
+===================================-->
+
+<div class="section">
+
+<div class="detail-card">
+
+<div class="detail-title">
+
+📢 INFORMASI PENTING
+
+</div>
+
+<div class="info-row">
+
+<span class="info-label">
+
+Jam Masuk
+
+</span>
+
+<span class="info-value">
+
+08.00 WIB
+
+</span>
+
+</div>
+
+<div class="info-row">
+
+<span class="info-label">
+
+Gate
+
+</span>
+
+<span class="info-value">
+
+MAIN GATE A
+
+</span>
+
+</div>
+
+<div class="info-row">
+
+<span class="info-label">
+
+Dress Code
+
+</span>
+
+<span class="info-value">
+
+Casual Festival
+
+</span>
+
+</div>
+
+<div class="info-row">
+
+<span class="info-label">
+
+QR Ticket
+
+</span>
+
+<span class="info-value">
+
+Harus ditunjukkan saat check-in
+
+</span>
+
+</div>
+
+<div class="info-row">
+
+<span class="info-label">
+
+Status
+
+</span>
+
+<span class="badge-paid">
+
+✔ VALID
+
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+<!--==================================
+FOOTER
+===================================-->
 
 <div class="footer">
 
-© 2026 POLIPONI
+<b>POLIPONI FESTIVAL 2026</b>
+
+<br><br>
+
+Terima kasih telah melakukan pembelian tiket.
+
+E-Ticket ini merupakan bukti resmi pembayaran
+dan wajib ditunjukkan saat memasuki area festival.
+
+<div class="copyright">
+
+© 2026 POLIPONI FESTIVAL
 
 <br>
 
-Official E-Ticket System
+Powered by POLIPONI Official Ticketing System
 
 </div>
 
 </div>
 
-<!-- PENUTUP BODY -->
-  <script>
+</div>
 
-/* ===========================
-AMBIL DATA DARI form.html
-=========================== */
+</div>
 
-const nama =
-localStorage.getItem("nama") || "-";
+</div>
 
-const email =
-localStorage.getItem("email") || "-";
+<!--==================================
+CANVAS EFFECT
+===================================-->
 
-const wa =
-localStorage.getItem("wa") || "-";
+<canvas
+id="fireworks"
+style="
+position:fixed;
+left:0;
+top:0;
+width:100%;
+height:100%;
+pointer-events:none;
+z-index:9999;
+"></canvas>
 
-const nomorId =
-localStorage.getItem("nomorId") || "-";
+<div id="particleContainer"></div>
 
-const identitas =
-localStorage.getItem("identitas") || "-";
+<div id="confettiContainer"></div>
 
-const alamat =
-localStorage.getItem("alamat") || "-";
-
-const jenisTiket =
-localStorage.getItem("jenisTiket") || "-";
-
-const jumlahTiket =
-localStorage.getItem("jumlahTiket") || "0";
-
-const total =
-Number(
-localStorage.getItem("totalPembayaran") || 0
-);
-
-/* ===========================
-TAMPILKAN DATA
-=========================== */
-
-document.getElementById("nama").innerText =
-nama;
-
-document.getElementById("email").innerText =
-email;
-
-document.getElementById("wa").innerText =
-wa;
-
-document.getElementById("nomorId").innerText =
-nomorId;
-
-document.getElementById("jenisTiket").innerText =
-jenisTiket;
-
-document.getElementById("jumlahTiket").innerText =
-jumlahTiket;
-
-document.getElementById("totalBayar").innerHTML =
-"Rp " +
-total.toLocaleString("id-ID");
-
-/* ===========================
-MEMBUAT TICKET ID
-=========================== */
-
-function randomCode(length){
-
-const chars =
-"ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-
-let result="";
-
-for(let i=0;i<length;i++){
-
-result+=chars.charAt(
-
-Math.floor(
-
-Math.random()*chars.length
-
-)
-
-);
-
-}
-
-return result;
-
-}
-
-let ticketId =
-localStorage.getItem("ticketId");
-
-if(!ticketId){
-
-ticketId =
-"POLI-"+
-new Date().getFullYear()+
-"-"+
-randomCode(8);
-
-localStorage.setItem(
-"ticketId",
-ticketId
-);
-
-}
-
-document.getElementById("ticketId").innerHTML =
-ticketId;
-
-/* ===========================
-QR CODE
-=========================== */
-
-new QRCode(
-
-document.getElementById("qrcode"),
-
-{
-
-text:JSON.stringify({
-
-ticket_id:ticketId,
-
-nama:nama,
-
-email:email,
-
-wa:wa,
-
-jenis:jenisTiket,
-
-jumlah:jumlahTiket,
-
-total:total
-
-}),
-
-width:180,
-
-height:180,
-
-correctLevel:
-QRCode.CorrectLevel.H
-
-}
-
-);
-
-/* ===========================
-BARCODE
-=========================== */
-
-JsBarcode(
-
-"#barcode",
-
-ticketId,
-
-{
-
-format:"CODE128",
-
-displayValue:true,
-
-fontSize:18,
-
-height:65,
-
-margin:10
-
-}
-
-);
-
-/* ===========================
-GATE OTOMATIS
-=========================== */
-
-const gateList=[
-"GATE A",
-"GATE B",
-"GATE C",
-"GATE D"
-];
-
-document.getElementById("gate").innerHTML=
-
-gateList[
-Math.floor(
-Math.random()*gateList.length
-)
-];
-
-/* ===========================
-SEAT
-=========================== */
-
-if(
-
-jenisTiket
-.toLowerCase()
-.includes("vip")
-
-){
-
-document.getElementById("seat").innerHTML=
-
-"VIP AREA";
-
-}
-
-else if(
-
-jenisTiket
-.toLowerCase()
-.includes("festival")
-
-){
-
-document.getElementById("seat").innerHTML=
-
-"FESTIVAL";
-
-}
-
-else{
-
-document.getElementById("seat").innerHTML=
-
-"FREE STANDING";
-
-}
-
-/* ===========================
-ANTI BACK
-=========================== */
-
-history.pushState(null,null,location.href);
-
-window.onpopstate=function(){
-
-history.go(1);
-
-};
-
-  </script>
 <script>
+/*=========================================================
+POLIPONI SUCCESS PAGE
+PART 3A
+LOCAL STORAGE SYNC
+=========================================================*/
 
-/* ===========================
-DOWNLOAD PNG
-=========================== */
+/*=========================
+SHORTCUT
+=========================*/
 
-document
-.getElementById("downloadPNG")
-.onclick = function(){
+const $ = id => document.getElementById(id);
 
-const ticket =
-document.getElementById("ticket");
+/*=========================
+RUPIAH
+=========================*/
 
-html2canvas(ticket,{
-scale:3,
-useCORS:true,
-backgroundColor:"#ffffff"
-})
-.then(function(canvas){
+function rupiah(value){
 
-const link =
-document.createElement("a");
+return "Rp " +
+Number(value || 0)
+.toLocaleString("id-ID");
 
-link.download =
-"E-Ticket-"+ticketId+".png";
+}
 
-link.href =
-canvas.toDataURL("image/png");
+/*=========================
+AMBIL DATA
+=========================*/
 
-link.click();
+const data={
 
-});
+nama:
+localStorage.getItem("nama") || "-",
 
-};
+wa:
+localStorage.getItem("wa") || "-",
 
-/* ===========================
-DOWNLOAD PDF
-=========================== */
+order:
+localStorage.getItem("orderId") || "-",
 
-document
-.getElementById("downloadPDF")
-.onclick = async function(){
+jenis:
+localStorage.getItem("jenisTiket") || "-",
 
-const ticket =
-document.getElementById("ticket");
+jumlah:
+localStorage.getItem("jumlahTiket") || "0",
 
-const canvas =
-await html2canvas(ticket,{
-scale:3,
-useCORS:true,
-backgroundColor:"#ffffff"
-});
-
-const img =
-canvas.toDataURL("image/png");
-
-const pdf =
-new jspdf.jsPDF({
-
-orientation:"portrait",
-unit:"mm",
-format:"a4"
-
-});
-
-const pageWidth =
-pdf.internal.pageSize.getWidth();
-
-const imgWidth =
-pageWidth-20;
-
-const imgHeight =
-canvas.height*imgWidth/canvas.width;
-
-pdf.addImage(
-img,
-"PNG",
-10,
-10,
-imgWidth,
-imgHeight
-);
-
-pdf.save(
-"E-Ticket-"+ticketId+".pdf"
-);
+total:
+localStorage.getItem("totalPembayaran") || 0
 
 };
 
-/* ===========================
-ANIMASI SUKSES
-=========================== */
+/*=========================
+DETAIL CARD
+=========================*/
 
-setTimeout(function(){
+$("nama").textContent=data.nama;
 
-const icon =
+$("wa").textContent=data.wa;
+
+$("order").textContent=data.order;
+
+$("jenis").textContent=data.jenis;
+
+$("jumlah").textContent=data.jumlah;
+
+$("total").textContent=
+rupiah(data.total);
+
+/*=========================
+TANGGAL
+=========================*/
+
+$("tanggal").textContent=
+
+new Date().toLocaleString(
+
+"id-ID",
+
+{
+
+weekday:"long",
+
+day:"numeric",
+
+month:"long",
+
+year:"numeric",
+
+hour:"2-digit",
+
+minute:"2-digit"
+
+}
+
+);
+
+/*=========================
+SYNC TICKET
+=========================*/
+
+$("ticketNama").textContent=
+data.nama;
+
+$("ticketJenis").textContent=
+data.jenis;
+
+$("ticketJumlah").textContent=
+data.jumlah;
+
+$("ticketOrder").textContent=
+data.order;
+
+/*=========================
+BARCODE
+=========================*/
+
+$("barcodeText").textContent=
+data.order;
+
+/*=========================
+SUCCESS ICON
+=========================*/
+
+const icon=
 document.querySelector(".success-icon");
 
-icon.style.transform =
-"scale(1.15)";
-
-setTimeout(function(){
-
-icon.style.transform =
-"scale(1)";
-
-},300);
-
-},500);
-
-/* ===========================
-CONFETTI SEDERHANA
-=========================== */
-
-for(let i=0;i<80;i++){
-
-const c =
-document.createElement("div");
-
-c.style.position="fixed";
-c.style.width="8px";
-c.style.height="8px";
-c.style.left=Math.random()*100+"vw";
-c.style.top="-20px";
-c.style.borderRadius="50%";
-c.style.pointerEvents="none";
-c.style.background=
-["#00d4ff","#00ff88","#ffd400","#ff4d6d","#8b5cf6"][Math.floor(Math.random()*5)];
-
-c.style.zIndex="9999";
-
-document.body.appendChild(c);
-
-const duration=
-3000+Math.random()*2000;
-
-c.animate([
+icon.animate([
 
 {
-transform:"translateY(0) rotate(0deg)",
-opacity:1
+
+transform:"scale(.5)",
+
+opacity:0
+
 },
 
 {
-transform:
-`translateY(${window.innerHeight+100}px) rotate(${720*Math.random()}deg)`,
-opacity:0
+
+transform:"scale(1.15)",
+
+opacity:1
+
+},
+
+{
+
+transform:"scale(1)"
+
 }
 
 ],{
 
-duration:duration,
+duration:1200,
 
-iterations:1,
+fill:"forwards",
 
-easing:"ease-out"
+easing:"ease"
 
 });
 
-setTimeout(()=>c.remove(),duration);
+/*=========================
+CARD ANIMATION
+=========================*/
+
+document
+
+.querySelectorAll(
+
+".detail-card,.ticket"
+
+)
+
+.forEach((item,index)=>{
+
+item.animate([
+
+{
+
+opacity:0,
+
+transform:
+
+"translateY(40px)"
+
+},
+
+{
+
+opacity:1,
+
+transform:
+
+"translateY(0)"
 
 }
 
-/* ===========================
-BERSIHKAN DRAFT FORM
-=========================== */
+],{
 
-[
-"draft_nama",
-"draft_identitas",
-"draft_nomorId",
-"draft_email",
-"draft_wa",
-"draft_alamat"
-].forEach(key=>localStorage.removeItem(key));
+delay:index*180,
 
+duration:900,
+
+fill:"forwards",
+
+easing:"ease"
+
+});
+
+});
+
+/*=========================
+TITLE
+=========================*/
+
+document
+
+.querySelector(".title")
+
+.animate([
+
+{
+
+opacity:0,
+
+letterSpacing:"25px"
+
+},
+
+{
+
+opacity:1,
+
+letterSpacing:"3px"
+
+}
+
+],{
+
+duration:1300,
+
+fill:"forwards"
+
+});
+
+/*=========================
+AUTO SCROLL TOP
+=========================*/
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+/*=========================
+BUTTON
+=========================*/
+
+const btnDownload=
+$("downloadBtn");
+
+const btnShare=
+$("shareBtn");
+
+const btnHome=
+$("homeBtn");
+  
+</div>
+  /*=========================================================
+PART 3B
+BUTTON • SHARE • HOME • CONFETTI • PARTICLE
+=========================================================*/
+
+/*=========================
+DOWNLOAD
+=========================*/
+
+btnDownload.onclick=()=>{
+
+window.print();
+
+};
+
+/*=========================
+SHARE
+=========================*/
+
+btnShare.onclick=async()=>{
+
+const text=
+
+`🎫 POLIPONI FESTIVAL 2026
+
+Nama : ${data.nama}
+
+Order : ${data.order}
+
+Jenis : ${data.jenis}
+
+Jumlah : ${data.jumlah}
+
+Status : PAID`;
+
+if(navigator.share){
+
+try{
+
+await navigator.share({
+
+title:"POLIPONI FESTIVAL",
+
+text:text
+
+});
+
+}catch(e){}
+
+}else{
+
+navigator.clipboard.writeText(text);
+
+alert("Informasi tiket berhasil disalin.");
+
+}
+
+};
+
+/*=========================
+HOME
+=========================*/
+
+btnHome.onclick=()=>{
+
+location.href="index.html";
+
+};
+
+/*=========================
+CONFETTI
+=========================*/
+
+const confettiContainer=
+
+document.getElementById(
+
+"confettiContainer"
+
+);
+
+const confettiColor=[
+
+"#FFD54A",
+
+"#22C55E",
+
+"#2563EB",
+
+"#EF4444",
+
+"#ffffff"
+
+];
+
+function confetti(){
+
+for(let i=0;i<150;i++){
+
+const div=
+
+document.createElement("div");
+
+div.className="confetti";
+
+div.style.left=
+
+Math.random()*100+"vw";
+
+div.style.top="-20px";
+
+div.style.background=
+
+confettiColor[
+
+Math.floor(
+
+Math.random()*confettiColor.length
+
+)
+
+];
+
+div.style.animationDuration=
+
+(4+Math.random()*4)+"s";
+
+div.style.transform=
+
+"rotate("+Math.random()*360+"deg)";
+
+confettiContainer.appendChild(div);
+
+setTimeout(()=>{
+
+div.remove();
+
+},8000);
+
+}
+
+}
+
+confetti();
+
+/*=========================
+PARTICLE
+=========================*/
+
+const particleBox=
+
+document.getElementById(
+
+"particleContainer"
+
+);
+
+setInterval(()=>{
+
+const p=
+
+document.createElement("div");
+
+p.className="particle";
+
+p.style.left=
+
+Math.random()*100+"vw";
+
+p.style.animationDuration=
+
+(5+Math.random()*6)+"s";
+
+particleBox.appendChild(p);
+
+setTimeout(()=>{
+
+p.remove();
+
+},12000);
+
+},120);
+
+/*=========================
+BUTTON RIPPLE
+=========================*/
+
+document
+
+.querySelectorAll(".btn")
+
+.forEach(btn=>{
+
+btn.onclick=(e)=>{
+
+const span=
+
+document.createElement("span");
+
+span.style.position="absolute";
+
+span.style.width="12px";
+
+span.style.height="12px";
+
+span.style.borderRadius="50%";
+
+span.style.background=
+
+"rgba(255,255,255,.6)";
+
+span.style.left=
+
+e.offsetX+"px";
+
+span.style.top=
+
+e.offsetY+"px";
+
+span.animate([
+
+{
+
+transform:
+
+"translate(-50%,-50%) scale(1)",
+
+opacity:1
+
+},
+
+{
+
+transform:
+
+"translate(-50%,-50%) scale(18)",
+
+opacity:0
+
+}
+
+],{
+
+duration:650
+
+});
+
+btn.appendChild(span);
+
+setTimeout(()=>{
+
+span.remove();
+
+},700);
+
+};
+
+});
+
+ /*=========================================================
+PART 3C
+FIREWORK • SUCCESS SOUND • DOWNLOAD PNG
+=========================================================*/
+
+/*=========================
+FIREWORK CANVAS
+=========================*/
+
+const canvas=document.getElementById("fireworks");
+
+const ctx=canvas.getContext("2d");
+
+function resizeCanvas(){
+
+canvas.width=window.innerWidth;
+
+canvas.height=window.innerHeight;
+
+}
+
+resizeCanvas();
+
+window.addEventListener("resize",resizeCanvas);
+
+let fireworks=[];
+
+class Fire{
+
+constructor(){
+
+this.x=Math.random()*canvas.width;
+
+this.y=Math.random()*canvas.height*.45;
+
+this.color=
+
+["#FFD54A","#22C55E","#2563EB","#EF4444","#FFFFFF"]
+
+[Math.floor(Math.random()*5)];
+
+this.list=[];
+
+for(let i=0;i<70;i++){
+
+this.list.push({
+
+x:this.x,
+
+y:this.y,
+
+dx:(Math.random()-.5)*8,
+
+dy:(Math.random()-.5)*8,
+
+life:100
+
+});
+
+}
+
+}
+
+draw(){
+
+this.list.forEach(p=>{
+
+ctx.beginPath();
+
+ctx.fillStyle=this.color;
+
+ctx.arc(p.x,p.y,2,0,6.28);
+
+ctx.fill();
+
+p.x+=p.dx;
+
+p.y+=p.dy;
+
+p.life--;
+
+});
+
+}
+
+alive(){
+
+return this.list.some(a=>a.life>0);
+
+}
+
+}
+
+function loop(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+fireworks.forEach(f=>f.draw());
+
+fireworks=fireworks.filter(f=>f.alive());
+
+requestAnimationFrame(loop);
+
+}
+
+loop();
+
+setInterval(()=>{
+
+fireworks.push(new Fire());
+
+},900);
+
+/*=========================
+SUCCESS SOUND
+=========================*/
+
+try{
+
+const audio=new Audio(
+
+"success.mp3"
+
+);
+
+audio.volume=.45;
+
+audio.play();
+
+}catch(e){}
+
+/*=========================
+DOWNLOAD PNG
+=========================*/
+
+btnDownload.onclick=()=>{
+
+html2canvas(document.body).then(canvas=>{
+
+const a=document.createElement("a");
+
+a.download=
+
+data.order+".png";
+
+a.href=
+
+canvas.toDataURL();
+
+a.click();
+
+});
+
+};
+
+/*=========================
+WELCOME
+=========================*/
+
+setTimeout(()=>{
+
+document.querySelector(".title")
+
+.animate([
+
+{
+
+transform:"scale(.8)",
+
+opacity:0
+
+},
+
+{
+
+transform:"scale(1)",
+
+opacity:1
+
+}
+
+],{
+
+duration:800
+
+});
+
+},400);
+
+/*=========================
+AUTO FIREWORK
+=========================*/
+
+for(let i=0;i<6;i++){
+
+setTimeout(()=>{
+
+fireworks.push(new Fire());
+
+},i*500);
+
+}
+
+/*=========================
+END
+=========================*/ 
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 </script>
 
 </body>
-</html>
+
+</html> 
+  
