@@ -1,390 +1,684 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>POLIPONI 2026 - QRIS Pembayaran</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Pembayaran QRIS</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
+
+*{
+
+margin:0;
+
+padding:0;
+
+box-sizing:border-box;
+
+font-family:'Poppins',sans-serif;
+
+}
 
 body{
+
+background:#121212;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
 min-height:100vh;
-overflow-x:hidden;
+
 padding:15px;
-background:linear-gradient(-45deg,#020617,#0f172a,#1e3a8a,#2563eb,#60a5fa);
-background-size:500% 500%;
-animation:bgMove 15s ease infinite;
-color:#fff;
+
 }
 
-@keyframes bgMove{
-0%{background-position:0% 50%}
-50%{background-position:100% 50%}
-100%{background-position:0% 50%}
-}
+.container{
 
-.container{max-width:780px;margin:auto}
-
-.card{
-background:rgba(255,255,255,.08);
-backdrop-filter:blur(22px);
-border:1px solid rgba(255,255,255,.12);
-border-radius:30px;
-padding:24px;
-margin-bottom:18px;
-box-shadow:0 20px 45px rgba(0,0,0,.35);
-animation:fade .6s ease;
-}
-
-@keyframes fade{
-from{opacity:0;transform:translateY(20px)}
-to{opacity:1;transform:none}
-}
-
-.logo{
-text-align:center;
-margin-bottom:20px;
-}
-
-.logoEvent{
 width:100%;
-max-width:350px;
-height:auto;
-display:block;
-margin:auto;
-filter:
-drop-shadow(0 0 10px rgba(96,165,250,.8))
-drop-shadow(0 0 25px rgba(96,165,250,.6));
-animation:logoFloat 4s ease-in-out infinite;
+
+max-width:520px;
+
+background:#ffffff;
+
+border-radius:20px;
+
+overflow:hidden;
+
+box-shadow:
+0 10px 35px rgba(0,0,0,.25);
+
 }
 
-@keyframes logoFloat{
-0%,100%{
-transform:translateY(0);
-}
-50%{
-transform:translateY(-8px);
-}
-}
+/* HEADER */
 
-.order{
-color:#60a5fa;
-font-weight:800;
-}
+.header{
 
-.total{
-font-size:2.7rem;
-font-weight:900;
-}
+background:linear-gradient(135deg,#00c853,#00e676);
 
-.timerBox{
+padding:25px;
+
 text-align:center;
-padding:18px;
-border-radius:25px;
-background:rgba(255,215,0,.08);
-border:1px solid rgba(255,215,0,.25);
+
+color:#fff;
+
 }
+
+.header h1{
+
+font-size:30px;
+
+font-weight:800;
+
+}
+
+.header p{
+
+margin-top:6px;
+
+font-size:14px;
+
+opacity:.9;
+
+}
+
+/* TIMER */
 
 .timer{
-font-size:3rem;
-font-weight:900;
-color:#60a5fa;
-text-shadow:0 0 25px #60a5fa;
-}
 
-.qrCard{text-align:center}
+padding:20px;
 
-.qrWrap{
-display:inline-block;
-background:#fff;
-padding:18px;
-border-radius:25px;
-box-shadow:0 10px 35px rgba(0,0,0,.35);
-}
+background:#fafafa;
 
-.qrWrap img{
-width:300px;
-max-width:100%;
-display:block;
-}
-
-.totalGlow{
-margin-top:15px;
-font-size:3rem;
-font-weight:900;
-text-shadow:
-0 0 15px #60a5fa,
-0 0 35px #60a5fa,
-0 0 55px #60a5fa;
-animation:pulse 2s infinite;
-}
-
-@keyframes pulse{
-50%{transform:scale(1.04)}
-}
-
-.uploadArea{
-border:3px dashed #60a5fa;
-border-radius:25px;
-padding:30px;
 text-align:center;
-cursor:pointer;
-background:rgba(96,165,250,.08);
-transition:.3s;
+
+border-bottom:1px solid #eee;
+
 }
 
-.uploadArea:hover{
-transform:translateY(-3px);
-box-shadow:0 0 30px rgba(96,165,250,.6);
+.timer small{
+
+display:block;
+
+color:#777;
+
+margin-bottom:10px;
+
 }
 
-.uploadIcon{
-font-size:75px;
-}
+#timer{
 
-.preview{
-display:none;
-margin-top:18px;
-padding:15px;
-border-radius:20px;
-background:rgba(255,255,255,.08);
-}
+font-size:48px;
 
-.preview img{
-width:100%;
-max-height:350px;
-object-fit:contain;
-border-radius:15px;
-}
-
-.success{
-margin-top:10px;
-font-weight:700;
-color:#22c55e;
-}
-
-.checkbox{
-margin-top:18px;
-display:flex;
-gap:10px;
-align-items:flex-start;
-}
-
-button{
-width:100%;
-padding:18px;
-border:none;
-border-radius:18px;
 font-weight:800;
-font-size:16px;
-cursor:pointer;
-background:linear-gradient(135deg,#60a5fa,#2563eb);
-color:#fff;
+
+color:#00a651;
+
 transition:.3s;
+
 }
 
-button:hover{
-transform:translateY(-2px);
+.warning{
+
+color:#d50000 !important;
+
+animation:blink .8s infinite;
+
 }
 
-button:disabled{
-opacity:.4;
-cursor:not-allowed;
+@keyframes blink{
+
+0%{opacity:1;}
+
+50%{opacity:.2;}
+
+100%{opacity:1;}
+
 }
 
-.loading{
-display:none;
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.92);
-z-index:99999;
-justify-content:center;
-align-items:center;
-flex-direction:column;
+/* QRIS */
+
+.qris{
+
+padding:25px;
+
+text-align:center;
+
 }
 
-.spinner{
-width:90px;
-height:90px;
-border:6px solid rgba(255,255,255,.15);
-border-top:6px solid #60a5fa;
-border-radius:50%;
-animation:spin 1s linear infinite;
+.qris img{
+
+width:100%;
+
+max-width:280px;
+
+display:block;
+
+margin:auto;
+
+border-radius:10px;
+
+border:1px solid #ddd;
+
 }
 
-@keyframes spin{
-to{transform:rotate(360deg)}
+/* TOTAL */
+
+.total{
+
+margin-top:20px;
+
+border-top:2px dashed #ddd;
+
+padding-top:20px;
+
+}
+
+.total span{
+
+display:block;
+
+color:#666;
+
+font-size:15px;
+
+}
+
+#total{
+
+margin-top:6px;
+
+font-size:38px;
+
+font-weight:800;
+
+color:#00a651;
+
+}
+
+/* DATA */
+
+.info{
+
+margin-top:25px;
+
+}
+
+.item{
+
+display:flex;
+
+justify-content:space-between;
+
+padding:12px 0;
+
+border-bottom:1px dashed #eee;
+
+}
+
+.label{
+
+color:#777;
+
+}
+
+.value{
+
+font-weight:700;
+
+color:#222;
+
+}
+
+/* STATUS */
+
+#status{
+
+margin-top:18px;
+
+text-align:center;
+
+font-weight:bold;
+
+color:#d50000;
+
+}
+
+/* BUTTON */
+
+.btn{
+
+width:100%;
+
+margin-top:18px;
+
+padding:15px;
+
+border:none;
+
+border-radius:12px;
+
+background:#00c853;
+
+color:white;
+
+font-size:17px;
+
+font-weight:700;
+
+cursor:pointer;
+
+}
+
+.btn:hover{
+
+background:#00a651;
+
 }
 
 @media(max-width:600px){
-.timer{font-size:2.2rem}
-.total,.totalGlow{font-size:2rem}
-.uploadIcon{font-size:55px}
+
+.container{
+
+border-radius:0;
+
+min-height:100vh;
+
 }
+
+#timer{
+
+font-size:42px;
+
+}
+
+#total{
+
+font-size:30px;
+
+}
+
+}
+
 </style>
+
 </head>
 
 <body>
 
 <div class="container">
 
-<div class="logo">
-<img src="logo-event.png" alt="POLIPONI"
-class="logoEvent">
+<div class="header">
+
+<h1>PEMBAYARAN QRIS</h1>
+
+<p>Silakan selesaikan pembayaran sebelum waktu habis.</p>
+
 </div>
 
-<div class="card">
-<div>ORDER ID</div>
-<div id="orderId" class="order">-</div>
-<br>
+<div class="timer">
 
-<div>TOTAL PEMBAYARAN</div>
-<div id="total" class="total">Rp 0</div>
+<small>Sisa Waktu Pembayaran</small>
 
-<br>
+<div id="timer">03:00</div>
 
-<div>Jenis Tiket : <span id="jenisTiket">-</span></div>
-<div>Jumlah Tiket : <span id="jumlahTiket">0</span></div>
-<div>Nama : <span id="namaPemesan">-</span></div>
-<div>WhatsApp : <span id="waPemesan">-</span></div>
 </div>
 
-<div class="card qrCard">
+<div class="qris">
 
-<div class="timerBox">
-<div>Selesaikan pembayaran dalam</div>
-<div id="timer" class="timer">03:00</div>
-</div>
-
-<br>
-
-<div class="qrWrap">
 <img src="qris.png" alt="QRIS">
+
+<div class="total">
+
+<span>Total Pembayaran</span>
+
+<div id="total">Rp 0</div>
+
 </div>
 
-<div id="totalGlow" class="totalGlow">Rp 0</div>
+<div class="info">
+
+<div class="item">
+
+<div class="label">Nama</div>
+
+<div class="value" id="nama">-</div>
 
 </div>
 
-<div class="card">
+<div class="item">
 
-<label for="file">
-<div class="uploadArea">
-<div class="uploadIcon">📤</div>
-<h2>UPLOAD BUKTI PEMBAYARAN</h2>
-<p>Klik area ini untuk memilih bukti transfer QRIS</p>
-<p>JPG • PNG • JPEG</p>
-</div>
-</label>
+<div class="label">Jenis Tiket</div>
 
-<input id="file" hidden type="file" accept="image/*">
+<div class="value" id="jenis">-</div>
 
-<div id="preview" class="preview">
-<img id="previewImg">
-<div id="fileName"></div>
-<div class="success">✅ Bukti pembayaran berhasil dipilih</div>
 </div>
 
-<div class="checkbox">
-<input type="checkbox" id="cek">
-<label for="cek">
-Saya menyatakan telah melakukan pembayaran dan mengunggah bukti pembayaran yang valid.
-</label>
+<div class="item">
+
+<div class="label">Jumlah Tiket</div>
+
+<div class="value" id="jumlah">0</div>
+
 </div>
 
-<br>
+<div class="item">
 
-<button id="btn" disabled>
-KONFIRMASI PEMBAYARAN
+<div class="label">WhatsApp</div>
+
+<div class="value" id="wa">-</div>
+
+</div>
+
+<div id="status"></div>
+
+</div>
+
+<button class="btn" onclick="restartTimer()">
+Refresh QRIS
+</button>
+
+<button
+class="btn"
+id="btnBayar"
+style="
+background:#1565c0;
+margin-top:10px;
+">
+Saya Sudah Membayar
 </button>
 
 </div>
 
 </div>
 
-<div id="loading" class="loading">
-<div class="spinner"></div>
-<h2 style="margin-top:20px">Memproses Pembayaran...</h2>
-</div>
-
 <script>
 
-if(!localStorage.getItem('orderId')){
-localStorage.setItem('orderId','POLIPONI-'+Date.now());
+/*====================================
+AMBIL DATA DARI LOCAL STORAGE
+====================================*/
+
+const total =
+Number(localStorage.getItem("totalPembayaran") || 0);
+
+const nama =
+localStorage.getItem("nama") || "-";
+
+const jenis =
+localStorage.getItem("jenisTiket") || "-";
+
+const jumlah =
+localStorage.getItem("jumlahTiket") || "0";
+
+const wa =
+localStorage.getItem("wa") || "-";
+
+/*====================================
+TAMPILKAN DATA
+====================================*/
+
+document.getElementById("nama").textContent =
+nama;
+
+document.getElementById("jenis").textContent =
+jenis;
+
+document.getElementById("jumlah").textContent =
+jumlah;
+
+document.getElementById("wa").textContent =
+wa;
+
+document.getElementById("total").textContent =
+"Rp " +
+total.toLocaleString("id-ID");
+
+/*====================================
+VALIDASI DATA
+====================================*/
+
+if(total<=0){
+
+document.getElementById("status").innerHTML=
+
+"⚠️ Data pembayaran tidak ditemukan.";
+
 }
 
-document.getElementById('orderId').textContent=localStorage.getItem('orderId');
+/*====================================
+TIMER
+====================================*/
 
-const total='Rp '+Number(localStorage.getItem('totalPembayaran')||0).toLocaleString('id-ID');
+const DURASI = 180;
 
-document.getElementById('total').textContent=total;
-document.getElementById('totalGlow').textContent=total;
+let sisa = DURASI;
 
-document.getElementById('jenisTiket').textContent=localStorage.getItem('jenisTiket')||'-';
-document.getElementById('jumlahTiket').textContent=localStorage.getItem('jumlahTiket')||'0';
-document.getElementById('namaPemesan').textContent=localStorage.getItem('nama')||'-';
-document.getElementById('waPemesan').textContent=localStorage.getItem('wa')||'-';
+let interval = null;
 
-let duration=180;
+function updateTimer(){
 
-function timerRun(){
-let m=Math.floor(duration/60);
-let s=duration%60;
+const menit =
+Math.floor(sisa/60);
 
-document.getElementById('timer').textContent=
-String(m).padStart(2,'0')+':'+
-String(s).padStart(2,'0');
+const detik =
+sisa%60;
 
-if(duration<=0){
-location.href='success.html';
+const el =
+document.getElementById("timer");
+
+el.innerHTML=
+
+String(menit).padStart(2,"0")
++
+":"
++
+String(detik).padStart(2,"0");
+
+if(sisa<=15){
+
+el.classList.add("warning");
+
+}else{
+
+el.classList.remove("warning");
+
 }
 
-duration--;
+if(sisa<=0){
+
+clearInterval(interval);
+
+document.getElementById("status").innerHTML=
+
+"❌ QRIS EXPIRED<br>Silakan Refresh QRIS";
+
+return;
+
 }
 
-timerRun();
-setInterval(timerRun,1000);
+sisa--;
 
-let uploaded=false;
-
-const file=document.getElementById('file');
-const cek=document.getElementById('cek');
-const btn=document.getElementById('btn');
-
-function checkButton(){
-btn.disabled=!(uploaded && cek.checked);
 }
 
-file.addEventListener('change',function(){
-if(this.files.length){
+function startTimer(){
 
-uploaded=true;
+clearInterval(interval);
 
-document.getElementById('preview').style.display='block';
+sisa=DURASI;
 
-document.getElementById('previewImg').src=URL.createObjectURL(this.files[0]);
+document.getElementById("status").innerHTML="";
 
-document.getElementById('fileName').innerHTML='<b>'+this.files[0].name+'</b>';
+updateTimer();
 
-checkButton();
+interval=setInterval(updateTimer,1000);
+
 }
+
+function restartTimer(){
+
+startTimer();
+
+}
+
+startTimer();
+
+/*====================================
+BUTTON BAYAR
+====================================*/
+
+document
+.getElementById("btnBayar")
+.addEventListener("click",function(){
+
+localStorage.setItem(
+"statusPembayaran",
+"menunggu"
+);
+
+window.location.href=
+"loading.html";
+
 });
 
-cek.addEventListener('change',checkButton);
 
-btn.addEventListener('click',()=>{
 
-document.getElementById('loading').style.display='flex';
+/*====================================
+AUTO CEK STATUS PEMBAYARAN
+====================================*/
 
-setTimeout(()=>{
-location.href='loading.html';
-},2500);
+function cekStatusPembayaran(){
 
-});
+const status =
+localStorage.getItem("statusPembayaran");
+
+/*
+Status yang didukung:
+
+menunggu
+berhasil
+gagal
+
+*/
+
+if(status==="berhasil"){
+
+window.location.href="success.html";
+
+return;
+
+}
+
+if(status==="gagal"){
+
+window.location.href="gagal.html";
+
+return;
+
+}
+
+}
+
+/*====================================
+AUTO CEK SETIAP 2 DETIK
+====================================*/
+
+setInterval(cekStatusPembayaran,2000);
+
+/*====================================
+JIKA TIMER HABIS
+====================================*/
+
+function timerExpired(){
+
+clearInterval(interval);
+
+document.getElementById("timer")
+.innerHTML="00:00";
+
+document.getElementById("timer")
+.classList.add("warning");
+
+document.getElementById("status")
+.innerHTML=
+"❌ QRIS EXPIRED<br>Silakan Refresh QRIS";
+
+document
+.getElementById("btnBayar")
+.disabled=true;
+
+document
+.getElementById("btnBayar")
+.style.opacity=".5";
+
+}
+
+/*====================================
+UBAH FUNGSI UPDATE TIMER
+====================================*/
+
+clearInterval(interval);
+
+sisa=DURASI;
+
+interval=setInterval(function(){
+
+const menit=Math.floor(sisa/60);
+
+const detik=sisa%60;
+
+const el=document.getElementById("timer");
+
+el.innerHTML=
+
+String(menit).padStart(2,"0")
++
+":"
++
+String(detik).padStart(2,"0");
+
+if(sisa<=15){
+
+el.classList.add("warning");
+
+}else{
+
+el.classList.remove("warning");
+
+}
+
+if(sisa<=0){
+
+timerExpired();
+
+return;
+
+}
+
+sisa--;
+
+},1000);
+
+/*====================================
+SELESAI
+====================================*/
 
 </script>
 
 </body>
 </html>
+  
