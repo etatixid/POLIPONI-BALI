@@ -248,6 +248,23 @@ const textList = [
 
 let txt = 0;
 
+
+// ===== LOCAL STORAGE POLIPONI =====
+const EVENT_KEY="poliponiEvent";
+const STATE_KEY="poliponiState";
+if(!localStorage.getItem(EVENT_KEY)){
+localStorage.setItem(EVENT_KEY,JSON.stringify({
+name:"POLIPONI BALI 2026",
+date:"04 Juli 2026",
+venue:"Bali United Training Center",
+ticketOpen:"07 Mei 2026 12.00 WITA",
+lineup:["Sheila On 7","Hindia",".Feast","510","Dialog Dini Hari"],
+prices:{Festival:300000,Premium:450000,FastTrack:625000}
+}));
+}
+const saved=JSON.parse(localStorage.getItem(STATE_KEY)||"null");
+if(saved){time=saved.time;queue=saved.queue;online=saved.online;}
+
 const run = setInterval(() => {
 
 time--;
@@ -301,7 +318,10 @@ status.innerHTML = `
 `;
 }
 
+localStorage.setItem(STATE_KEY,JSON.stringify({time,queue,online}));
+
 if(time <= 0){
+localStorage.removeItem(STATE_KEY);
 clearInterval(run);
 window.location.href="tiket.html";
 }
