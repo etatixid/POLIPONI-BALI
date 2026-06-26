@@ -109,37 +109,68 @@ const ticketList=[["Premium",450000],["Festival",300000],["Fast Track",625000]];
 const selectedItems={}, ticketContainer=document.getElementById('cards');
 const rp=n=>"Rp "+n.toLocaleString('id-ID');
 
-ticketList.forEach((t,i)=>{
-selectedItems[t[0]]=0;
-cards.innerHTML+=`<div class="ticket"><div class="top"><div class="name">${t[0]}</div><div class="sale">ON SALE</div></div><div class="meta">• Tiket resmi POLIPONI<br>• Akses masuk sesuai kategori<br>• Transaksi aman & terpercaya</div><div class="divider"></div><div class="bottom"><div class="price">${rp(t[1])}</div><div><button class="select-btn" id="s${i}" onclick="start(${i})">Pilih Tiket</button><div class="qty" id="q${i}"><button class="qbtn" onclick="minus(${i})">−</button><div id="n${i}">1</div><button class="qbtn" onclick="plus(${i})">+</button></div></div></div><div class="brand-footer">Official Ticketing Partner • POLIPONI</div></div>`;
+tickets.forEach((t,i)=>{
+cart[t[0]]=0;
+cards.innerHTML+=`<div class="ticket"><div class="top"><div class="name">${t[0]}</div><div class="sale">ON SALE</div></div><div class="meta">• Tiket resmi ETATIX<br>• Akses masuk sesuai kategori<br>• Transaksi aman & terpercaya</div><div class="divider"></div><div class="bottom"><div class="price">${rp(t[1])}</div><div><button class="select-btn" id="s${i}" onclick="start(${i})">Pilih Tiket</button><div class="qty" id="q${i}"><button class="qbtn" onclick="minus(${i})">−</button><div id="n${i}">1</div><button class="qbtn" onclick="plus(${i})">+</button></div></div></div><div class="brand-footer">Official Ticketing Partner • ETATIX</div></div>`;
 });
 
-function start(i){selectedItems[ticketList[i][0]]=1;toggle(i,false);render(i)}
-function plus(i){selectedItems[ticketList[i][0]]++;render(i)}
-function minus(i){selectedItems[ticketList[i][0]]--;if(selectedItems[ticketList[i][0]]<=0){selectedItems[ticketList[i][0]]=0;toggle(i,true)}render(i)}
+
+function start(i){cart[tickets[i][0]]=1;toggle(i,false);render(i)}
+function plus(i){cart[tickets[i][0]]++;render(i)}
+function minus(i){cart[tickets[i][0]]--;if(cart[tickets[i][0]]<=0){cart[tickets[i][0]]=0;toggle(i,true)}render(i)}
 function toggle(i,s){document.getElementById('s'+i).style.display=s?'block':'none';document.getElementById('q'+i).style.display=s?'none':'flex'}
+
 function render(i){
-let e=document.getElementById('n'+i); if(e)e.textContent=selectedItems[ticketList[i][0]];
-let qty=0,total=0,items=[];
-ticketList.forEach(t=>{let q=selectedItems[t[0]]; if(q){qty+=q; total+=q*t[1]; items.push({jenis:t[0],jumlah:q,harga:t[1]})}});
-qtyText.textContent=`${qty} Tiket Dipilih`;
-totalText.textContent=rp(total);
-checkout.disabled=!qty;
-localStorage.setItem('checkoutData',JSON.stringify({items,totalQty:qty,totalPrice:total}));
+
+    let e=document.getElementById('n'+i);
+    if(e)e.textContent=cart[tickets[i][0]];
+
+    let qty=0;
+    let total=0;
+    let items=[];
+
+    tickets.forEach(t=>{
+
+        let q=cart[t[0]];
+
+        if(q){
+
+            qty+=q;
+            total+=q*t[1];
+
+            items.push({
+                nama:t[0],
+                qty:q,
+                harga:t[1]
+            });
+
+        }
+
+    });
+
+    qtyText.textContent=`${qty} Tiket Dipilih`;
+    totalText.textContent=rp(total);
+
+    checkout.disabled=!qty;
+
+    // DATA UNTUK FORM.HTML
+    localStorage.setItem(
+        'checkout_items',
+        JSON.stringify(items)
+    );
+
+    localStorage.setItem(
+        'jumlahTiket',
+        qty
+    );
+
+    localStorage.setItem(
+        'totalPembayaran',
+        total
+    );
+
 }
-checkout.onclick=()=>{
-const eventData={
- nama:'POLIPONI 2026',
- artis:'',
- tanggal:'',
- lokasi:'',
- banner:'banner.png'
-};
-const checkoutData=JSON.parse(localStorage.getItem('checkoutData')||'{}');
-selectedItems.event=eventData;
-localStorage.setItem('checkoutData',JSON.stringify(checkoutData));
-location.href='form.html';
-};
+checkout.onclick=()=>location.href='form.html';
 </script>
 </body>
 </html>
