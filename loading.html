@@ -1,130 +1,823 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Poliponi</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
-body{overflow:hidden;background:#040510}
-.screen{position:fixed;inset:0;display:flex;justify-content:center;align-items:center;background:radial-gradient(circle at top,#34125a,#040510 60%);}
-.grid{position:absolute;inset:0;opacity:.08;background-image:linear-gradient(rgba(34,211,238,.3) 1px,transparent 1px),linear-gradient(90deg,rgba(34,211,238,.3) 1px,transparent 1px);background-size:30px 30px}
-.box{width:min(94vw,430px);text-align:center;color:#fff;z-index:2;padding:10px}
-.ring{width:140px;height:140px;margin:auto;position:relative}
-.ring:before,.ring:after{content:"";position:absolute;inset:0;border-radius:50%;border:4px solid transparent}
-.ring:before{border-top-color:#ff4df8;border-right-color:#ff4df8;animation:spin 4s linear infinite}
-.ring:after{border-left-color:#22d3ee;border-bottom-color:#22d3ee;animation:spinr 6s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}@keyframes spinr{to{transform:rotate(-360deg)}}
-.logo{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
-.logo img{width:82px;height:82px;object-fit:contain;filter:drop-shadow(0 0 12px #fff) drop-shadow(0 0 20px #22d3ee)}
-h1{font-size:30px;margin-top:12px}
-.sub{font-size:12px;letter-spacing:4px;color:#cbd5e1}
-#ecg{width:100%;height:70px;margin:18px 0}
-.progress{display:flex;justify-content:center;gap:3px;margin:15px 0}
-.seg{width:7px;height:15px;background:#1f2937;border-radius:3px}
-.on{background:linear-gradient(#ff4df8,#22d3ee);box-shadow:0 0 10px #22d3ee}
-.statusbox{margin-top:10px;padding:14px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);border-radius:16px}
-.title{font-size:11px;letter-spacing:3px;color:#94a3b8;margin-bottom:8px}
-#status{min-height:48px;font-size:15px;line-height:1.5}
-.badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px}
-.badges span{font-size:11px;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.05)}
-canvas.wave{position:absolute;left:0;bottom:0;width:100%;height:90px}
-</style>
-</head>
-<body>
-<div class="screen">
-<div class="grid"></div>
-<div class="box">
-<div class="ring">
-<div class="logo"><img src="logo-event.png" alt="Logo Event"></div>
-</div>
-<h1>POLIPONI BALI</h1>
-<div class="sub">LOADING</div>
-<canvas id="ecg"></canvas>
-<div class="progress" id="progress"></div>
 
-<div class="statusbox">
-<div class="title">SYSTEM STATUS</div>
-<div id="status">Memulai sinkronisasi sistem festival...</div>
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>POLIPONI FESTIVAL 2026 | Official Loading</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Outfit',sans-serif;
+}
+
+:root{
+
+--orange:#ff6a00;
+--yellow:#ffd600;
+--cyan:#33d7ff;
+--green:#34d657;
+--black:#000;
+--white:#fff;
+--bg:#f7f4ef;
+
+}
+
+html,
+body{
+
+width:100%;
+height:100%;
+overflow:hidden;
+background:var(--bg);
+
+}
+
+/*===============================
+BACKGROUND GRID
+================================*/
+
+body::before{
+
+content:"";
+
+position:fixed;
+inset:0;
+
+background-image:
+
+linear-gradient(rgba(0,0,0,.08) 1px,transparent 1px),
+
+linear-gradient(90deg,rgba(0,0,0,.08) 1px,transparent 1px);
+
+background-size:40px 40px;
+
+z-index:-5;
+
+}
+
+/*===============================
+DECORATION
+================================*/
+
+.decoration{
+
+position:absolute;
+
+pointer-events:none;
+
+}
+
+.star{
+
+top:40px;
+right:50px;
+
+font-size:70px;
+
+font-weight:900;
+
+color:var(--yellow);
+
+animation:float 5s infinite ease-in-out;
+
+}
+
+.heart{
+
+left:35px;
+top:120px;
+
+font-size:60px;
+
+color:var(--orange);
+
+animation:float2 6s infinite ease-in-out;
+
+}
+
+.circle{
+
+left:20px;
+bottom:80px;
+
+width:70px;
+height:70px;
+
+border-radius:50%;
+
+border:10px solid var(--green);
+
+animation:rotate 10s linear infinite;
+
+}
+
+.wave{
+
+right:25px;
+bottom:80px;
+
+font-size:100px;
+
+font-weight:900;
+
+color:var(--cyan);
+
+transform:rotate(-15deg);
+
+}
+
+@keyframes float{
+
+0%{transform:translateY(0)}
+50%{transform:translateY(-12px)}
+100%{transform:translateY(0)}
+
+}
+
+@keyframes float2{
+
+0%{transform:translateY(0)}
+50%{transform:translateY(10px)}
+100%{transform:translateY(0)}
+
+}
+
+@keyframes rotate{
+
+100%{
+
+transform:rotate(360deg);
+
+}
+
+}
+
+/*===============================
+CONTAINER
+================================*/
+
+.screen{
+
+position:fixed;
+
+inset:0;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+padding:20px;
+
+}
+
+.card{
+
+width:min(95vw,470px);
+
+background:#fff;
+
+border:5px solid #000;
+
+box-shadow:18px 18px 0 #000;
+
+padding:24px;
+
+position:relative;
+
+}
+
+/*===============================
+HEADER
+================================*/
+
+.header{
+
+text-align:center;
+
+}
+
+.logoBox{
+
+width:120px;
+height:120px;
+
+margin:auto;
+
+background:#fff;
+
+border:5px solid #000;
+
+border-radius:50%;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+box-shadow:10px 10px 0 #000;
+
+overflow:hidden;
+
+}
+
+.logoBox img{
+
+width:75px;
+
+height:75px;
+
+object-fit:contain;
+
+}
+
+.title{
+
+margin-top:18px;
+
+font-size:38px;
+
+font-weight:900;
+
+letter-spacing:2px;
+
+}
+
+.subtitle{
+
+margin-top:8px;
+
+font-size:14px;
+
+font-weight:700;
+
+letter-spacing:4px;
+
+}
+
+.colorBar{
+
+display:flex;
+
+justify-content:center;
+
+gap:6px;
+
+margin-top:18px;
+
+}
+
+.colorBar div{
+
+width:42px;
+
+height:18px;
+
+border:2px solid #000;
+
+}
+
+.orange{
+
+background:var(--orange);
+
+}
+
+.yellow{
+
+background:var(--yellow);
+
+}
+
+.cyan{
+
+background:var(--cyan);
+
+}
+
+.green{
+
+background:var(--green);
+
+}
+ /*====================================
+PROGRESS BAR PREMIUM
+====================================*/
+
+.progressWrap{
+
+margin-top:24px;
+
+height:26px;
+
+background:#fff;
+
+border:4px solid #000;
+
+overflow:hidden;
+
+position:relative;
+
+box-shadow:8px 8px 0 #000;
+
+}
+
+.progress{
+
+height:100%;
+
+width:0%;
+
+background:linear-gradient(
+90deg,
+var(--orange) 0%,
+var(--orange) 25%,
+var(--yellow) 25%,
+var(--yellow) 50%,
+var(--cyan) 50%,
+var(--cyan) 75%,
+var(--green) 75%,
+var(--green) 100%
+);
+
+transition:width .8s linear;
+
+}
+
+/*====================================
+STATUS CARD
+====================================*/
+
+.statusCard{
+
+margin-top:24px;
+
+background:#fff;
+
+border:4px solid #000;
+
+box-shadow:8px 8px 0 #000;
+
+padding:18px;
+
+}
+
+.statusTitle{
+
+display:inline-block;
+
+padding:8px 16px;
+
+background:var(--green);
+
+color:#fff;
+
+font-size:13px;
+
+font-weight:900;
+
+border:3px solid #000;
+
+box-shadow:5px 5px 0 #000;
+
+letter-spacing:2px;
+
+margin-bottom:16px;
+
+}
+
+#status{
+
+font-size:15px;
+
+font-weight:700;
+
+line-height:1.9;
+
+min-height:80px;
+
+}
+
+/*====================================
+BADGES
+====================================*/
+
+.badges{
+
+display:flex;
+
+justify-content:center;
+
+gap:12px;
+
+flex-wrap:wrap;
+
+margin-top:20px;
+
+}
+
+.badges span{
+
+padding:10px 14px;
+
+background:#fff;
+
+border:3px solid #000;
+
+box-shadow:5px 5px 0 #000;
+
+font-size:12px;
+
+font-weight:800;
+
+}
+
+/*====================================
+FOOTER
+====================================*/
+
+.footer{
+
+margin-top:22px;
+
+text-align:center;
+
+font-size:13px;
+
+font-weight:800;
+
+letter-spacing:2px;
+
+animation:blink 1.2s infinite;
+
+}
+
+@keyframes blink{
+
+0%{opacity:.5;}
+50%{opacity:1;}
+100%{opacity:.5;}
+
+}
+
+/*====================================
+RESPONSIVE
+====================================*/
+
+@media(max-width:480px){
+
+.card{
+
+padding:18px;
+
+}
+
+.logoBox{
+
+width:95px;
+height:95px;
+
+}
+
+.logoBox img{
+
+width:60px;
+height:60px;
+
+}
+
+.title{
+
+font-size:28px;
+
+}
+
+.subtitle{
+
+font-size:11px;
+
+letter-spacing:3px;
+
+}
+
+.badges{
+
+gap:8px;
+
+}
+
+.badges span{
+
+font-size:11px;
+
+padding:8px 10px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="decoration star">✦</div>
+
+<div class="decoration heart">❤</div>
+
+<div class="decoration circle"></div>
+
+<div class="decoration wave">≈</div>
+
+<div class="screen">
+
+<div class="card">
+
+<div class="header">
+
+<div class="logoBox">
+
+<img src="logo-event.png" alt="Logo Event">
+
+</div>
+
+<div class="title">
+
+POLIPONI BALI
+
+</div>
+
+<div class="subtitle">
+
+OFFICIAL FESTIVAL LOADING
+
+</div>
+
+<div class="colorBar">
+
+<div class="orange"></div>
+
+<div class="yellow"></div>
+
+<div class="cyan"></div>
+
+<div class="green"></div>
+
+</div>
+
+</div>
+
+<div class="progressWrap">
+
+<div class="progress" id="progressBar"></div>
+
+</div>
+
+<div class="statusCard">
+
+<div class="statusTitle">
+
+SYSTEM STATUS
+
+</div>
+
+<div id="status">
+
+Memulai sinkronisasi sistem festival...
+
+</div>
+
 </div>
 
 <div class="badges">
-<span>✓ Data Verified</span>
-<span>✓ Payment Verified</span>
-<span>✓ Ticket Generated</span>
+
+<span>✓ VERIFIED</span>
+
+<span>✓ QR READY</span>
+
+<span>✓ TICKET READY</span>
+
+</div>
+
+<div class="footer">
+
+PLEASE DON'T CLOSE THIS PAGE
+
 </div>
 </div>
-<canvas class="wave" id="wave"></canvas>
+
 </div>
 
 <script>
+
+const status=document.getElementById("status");
+const progress=document.getElementById("progressBar");
+
 const messages=[
+
 "Memulai sinkronisasi sistem festival...",
+
 "Memverifikasi data peserta...",
+
 "Memeriksa integritas transaksi...",
+
 "Menghubungkan pusat data festival...",
+
 "Memvalidasi informasi pemesanan...",
-"Menyiapkan tiket digital dan QR Access...",
+
+"Menyiapkan tiket digital...",
+
+"Membuat QR Access...",
+
 "Mengamankan data registrasi...",
+
 "Memvalidasi QR Ticket...",
+
 "Sinkronisasi database berhasil...",
-"Melakukan pemeriksaan akhir sistem...",
-"Finalisasi registrasi festival...",
-"Registrasi berhasil. Mengalihkan halaman..."
+
+"Pemeriksaan akhir sistem...",
+
+"Registrasi berhasil..."
+
 ];
-let idx=0;
+
+let current=0;
+
+let percent=0;
+
+const loading=setInterval(()=>{
+
+percent++;
+
+progress.style.width=percent+"%";
+
+if(percent%8===0 && current<messages.length){
+
+status.innerHTML=messages[current];
+
+current++;
+
+}
+
+if(percent>=100){
+
+clearInterval(loading);
+
+status.innerHTML="Redirect ke halaman Success...";
+
+document.body.style.transition="opacity .8s";
+
+document.body.style.opacity="0";
+
+setTimeout(()=>{
+
+window.location.href="success.html";
+
+},900);
+
+}
+
+},3000);
+
+/*==========================
+LOGO PULSE
+==========================*/
+
+const logo=document.querySelector(".logoBox");
+
 setInterval(()=>{
- if(idx<messages.length-1){
-   document.getElementById('status').textContent=messages[++idx];
- }
-},25000);
 
-const progress=document.getElementById('progress');
-for(let i=0;i<60;i++){let d=document.createElement('div');d.className='seg';progress.appendChild(d);}
-const segs=[...document.querySelectorAll('.seg')];
+logo.animate([
 
-const total=300000,start=Date.now();
-(function run(){
- const p=Math.min(100,(Date.now()-start)/total*100);
- const active=Math.floor((p/100)*60);
- segs.forEach((s,i)=>s.classList.toggle('on',i<active));
- if(p<100) requestAnimationFrame(run);
- else location.href='success.html';
-})();
+{
 
-const ecg=document.getElementById('ecg'),ctx=ecg.getContext('2d');
-function rs(){ecg.width=ecg.offsetWidth;ecg.height=70;} rs(); addEventListener('resize',rs);
-let off=0;
-function drawECG(){
- off+=5;
- ctx.clearRect(0,0,ecg.width,ecg.height);
- ctx.beginPath();
- for(let x=0;x<ecg.width;x++){
-  let t=(x+off)%220,y=35;
-  if(t>70&&t<85)y=35-(t-70)*1.7;
-  if(t>=85&&t<100)y=10+(t-85)*3.2;
-  if(t>=100&&t<115)y=58-(t-100)*1.5;
-  x?ctx.lineTo(x,y):ctx.moveTo(x,y);
- }
- ctx.strokeStyle='#22d3ee';ctx.lineWidth=3;ctx.shadowBlur=15;ctx.shadowColor='#22d3ee';ctx.stroke();
- requestAnimationFrame(drawECG);
+transform:"scale(1)"
+
+},
+
+{
+
+transform:"scale(1.08)"
+
+},
+
+{
+
+transform:"scale(1)"
+
 }
-drawECG();
 
-const w=document.getElementById('wave'),wx=w.getContext('2d');
-function wr(){w.width=innerWidth;w.height=90;}wr();addEventListener('resize',wr);
-function wave(){
- wx.clearRect(0,0,w.width,w.height);
- wx.beginPath();
- for(let i=0;i<w.width;i++){
-   let y=45+Math.sin((i+Date.now()/10)/45)*10;
-   i?wx.lineTo(i,y):wx.moveTo(i,y);
- }
- wx.strokeStyle='#22d3ee';wx.lineWidth=3;wx.shadowBlur=15;wx.shadowColor='#22d3ee';wx.stroke();
- requestAnimationFrame(wave);
+],{
+
+duration:900
+
+});
+
+},1800);
+
+/*==========================
+COLOR BAR ANIMATION
+==========================*/
+
+const colors=document.querySelectorAll(".colorBar div");
+
+let glow=0;
+
+setInterval(()=>{
+
+colors.forEach((c)=>{
+
+c.style.filter="brightness(1)";
+
+});
+
+colors[glow].style.filter="brightness(1.6)";
+
+glow++;
+
+if(glow>=colors.length){
+
+glow=0;
+
 }
-wave();
+
+},450);
+
+/*==========================
+BADGE EFFECT
+==========================*/
+
+document.querySelectorAll(".badges span").forEach((badge,index)=>{
+
+setInterval(()=>{
+
+badge.animate([
+
+{
+
+transform:"translateY(0)"
+
+},
+
+{
+
+transform:"translateY(-5px)"
+
+},
+
+{
+
+transform:"translateY(0)"
+
+}
+
+],{
+
+duration:600
+
+});
+
+},1500+(index*250));
+
+});
+
+/*==========================
+BACKGROUND FLOAT
+==========================*/
+
+document.querySelectorAll(".decoration").forEach((item,index)=>{
+
+let x=0;
+
+setInterval(()=>{
+
+x++;
+
+item.style.transform=
+
+"translateY("+Math.sin(x/10)*8+"px)";
+
+},40+index*5);
+
+});
+
 </script>
+
 </body>
+
 </html>
