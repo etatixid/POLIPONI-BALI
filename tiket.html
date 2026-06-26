@@ -106,10 +106,10 @@
 
 <script>
 const ticketList=[["Premium",450000],["Festival",300000],["Fast Track",625000]];
-const selectedItems={}, ticketContainer=document.getElementById('cards');
+const cart={},cards=document.getElementById('cards');
 const rp=n=>"Rp "+n.toLocaleString('id-ID');
 
-tickets.forEach((t,i)=>{
+ticketList.forEach((t,i)=>{
 cart[t[0]]=0;
 cards.innerHTML+=`<div class="ticket"><div class="top"><div class="name">${t[0]}</div><div class="sale">ON SALE</div></div><div class="meta">• Tiket resmi ETATIX<br>• Akses masuk sesuai kategori<br>• Transaksi aman & terpercaya</div><div class="divider"></div><div class="bottom"><div class="price">${rp(t[1])}</div><div><button class="select-btn" id="s${i}" onclick="start(${i})">Pilih Tiket</button><div class="qty" id="q${i}"><button class="qbtn" onclick="minus(${i})">−</button><div id="n${i}">1</div><button class="qbtn" onclick="plus(${i})">+</button></div></div></div><div class="brand-footer">Official Ticketing Partner • ETATIX</div></div>`;
 });
