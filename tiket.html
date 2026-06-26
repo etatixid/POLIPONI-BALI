@@ -115,62 +115,99 @@ cards.innerHTML+=`<div class="ticket"><div class="top"><div class="name">${t[0]}
 });
 
 
-function start(i){cart[tickets[i][0]]=1;toggle(i,false);render(i)}
-function plus(i){cart[tickets[i][0]]++;render(i)}
-function minus(i){cart[tickets[i][0]]--;if(cart[tickets[i][0]]<=0){cart[tickets[i][0]]=0;toggle(i,true)}render(i)}
-function toggle(i,s){document.getElementById('s'+i).style.display=s?'block':'none';document.getElementById('q'+i).style.display=s?'none':'flex'}
+function start(i){
+    cart[ticketList[i][0]] = 1;
+    toggle(i,false);
+    render(i);
+}
+
+function plus(i){
+    cart[ticketList[i][0]]++;
+    render(i);
+}
+
+function minus(i){
+    cart[ticketList[i][0]]--;
+
+    if(cart[ticketList[i][0]] <= 0){
+        cart[ticketList[i][0]] = 0;
+        toggle(i,true);
+    }
+
+    render(i);
+}
+
+function toggle(i,showButton){
+    document.getElementById("s"+i).style.display = showButton ? "block" : "none";
+    document.getElementById("q"+i).style.display = showButton ? "none" : "flex";
+}
 
 function render(i){
 
-    let e=document.getElementById('n'+i);
-    if(e)e.textContent=cart[tickets[i][0]];
+    const qtyElement = document.getElementById("n"+i);
 
-    let qty=0;
-    let total=0;
-    let items=[];
+    if(qtyElement){
+        qtyElement.textContent = cart[ticketList[i][0]];
+    }
 
-    tickets.forEach(t=>{
+    let qty = 0;
+    let total = 0;
+    const items = [];
 
-        let q=cart[t[0]];
+    ticketList.forEach(function(t){
 
-        if(q){
+        const q = cart[t[0]];
 
-            qty+=q;
-            total+=q*t[1];
+        if(q > 0){
+
+            qty += q;
+            total += q * t[1];
 
             items.push({
-                nama:t[0],
-                qty:q,
-                harga:t[1]
+                nama: t[0],
+                qty: q,
+                harga: t[1]
             });
 
         }
 
     });
 
-    qtyText.textContent=`${qty} Tiket Dipilih`;
-    totalText.textContent=rp(total);
+    document.getElementById("qtyText").textContent =
+        qty + " Tiket Dipilih";
 
-    checkout.disabled=!qty;
+    document.getElementById("totalText").textContent =
+        rp(total);
 
-    // DATA UNTUK FORM.HTML
+    document.getElementById("checkout").disabled = qty === 0;
+
     localStorage.setItem(
-        'checkout_items',
+        "checkout_items",
         JSON.stringify(items)
     );
 
     localStorage.setItem(
-        'jumlahTiket',
+        "jumlahTiket",
         qty
     );
 
     localStorage.setItem(
-        'totalPembayaran',
+        "totalPembayaran",
         total
     );
 
 }
-checkout.onclick=()=>location.href='form.html';
+
+document.getElementById("checkout").onclick = function(){
+
+    if(Object.values(cart).every(v=>v===0)){
+        alert("Silakan pilih tiket terlebih dahulu.");
+        return;
+    }
+
+    location.href = "form.html";
+
+};
 </script>
 </body>
 </html>
