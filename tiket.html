@@ -125,7 +125,7 @@ tickets.forEach(t=>{let q=cart[t[0]]; if(q){qty+=q; total+=q*t[1]; items.push({j
 qtyText.textContent=`${qty} Tiket Dipilih`;
 totalText.textContent=rp(total);
 checkout.disabled=!qty;
-localStorage.setItem('etatix_cart',JSON.stringify({items,totalQty:qty,totalPrice:total}));
+localStorage.setItem('cart',JSON.stringify({items,totalQty:qty,totalPrice:total}));
 }
 checkout.onclick=()=>{
 const eventData={
@@ -135,9 +135,9 @@ const eventData={
  lokasi:'',
  banner:'banner.png'
 };
-const cart=JSON.parse(localStorage.getItem('etatix_cart')||'{}');
+const cart=JSON.parse(localStorage.getItem('cart')||'{}');
 cart.event=eventData;
-localStorage.setItem('etatix_cart',JSON.stringify(cart));
+localStorage.setItem('cart',JSON.stringify(cart));
 location.href='form.html';
 };
 </script>
