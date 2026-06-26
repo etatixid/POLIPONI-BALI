@@ -127,7 +127,19 @@ totalText.textContent=rp(total);
 checkout.disabled=!qty;
 localStorage.setItem('etatix_cart',JSON.stringify({items,totalQty:qty,totalPrice:total}));
 }
-checkout.onclick=()=>location.href='form.html';
+checkout.onclick=()=>{
+const eventData={
+ nama:'POLIPONI 2026',
+ artis:'',
+ tanggal:'',
+ lokasi:'',
+ banner:'banner.png'
+};
+const cart=JSON.parse(localStorage.getItem('etatix_cart')||'{}');
+cart.event=eventData;
+localStorage.setItem('etatix_cart',JSON.stringify(cart));
+location.href='form.html';
+};
 </script>
 </body>
 </html>
